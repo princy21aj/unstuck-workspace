@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#171522">
+  <meta name="description" content="Unstuck turns overwhelming tasks into small, achievable actions.">
+  <title>Unstuck — Start smaller. Start now.</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app" id="appRoot">
+    <header class="topbar">
+      <a class="brand" href="#home" data-nav="home" aria-label="Unstuck home">
+        <span class="brand-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="m5 12.5 4.2 4.2L19.5 6.8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <span>unstuck<span class="brand-period">.</span></span>
+      </a>
+      <span class="top-note"><span class="dot"></span>One thing at a time</span>
+      <button class="settings-open" id="settingsButton" type="button" data-nav="settings"><span aria-hidden="true">⚙</span> Settings</button>
+    </header>
+
+    <div class="app-layout">
+      <aside class="sidebar" aria-label="App navigation">
+        <div class="sidebar-heading">YOUR SPACE</div>
+        <nav class="main-nav" aria-label="Main navigation">
+          <button class="nav-link" type="button" data-nav="home" aria-current="page"><span class="nav-icon" aria-hidden="true">⌂</span>Home</button>
+          <button class="nav-link" type="button" data-nav="workspace"><span class="nav-icon" aria-hidden="true">✳</span>My Plan</button>
+          <button class="nav-link" type="button" data-nav="focus"><span class="nav-icon" aria-hidden="true">◉</span>Focus Mode</button>
+          <button class="nav-link" type="button" data-nav="wins"><span class="nav-icon" aria-hidden="true">✦</span>Small Wins</button>
+        </nav>
+        <div class="sidebar-note"><span class="sidebar-note-mark">✦</span><strong>Small steps count.</strong><span>Make room for one beginning.</span></div>
+      </aside>
+
+      <main>
+      <section class="view active" id="homeView" data-view="home" aria-labelledby="homeTitle">
+        <div class="hero">
+          <div class="hero-copy">
+            <div class="eyebrow"><span class="eyebrow-mark"></span>A softer way to start</div>
+            <h1 id="homeTitle">You don't need to finish it.<br>Just <em>begin.</em></h1>
+            <p>Unstuck turns overwhelming tasks into small, achievable actions you can start right now.</p>
+            <div class="actions">
+              <button class="btn primary" type="button" data-nav="workspace">Find my first step <span aria-hidden="true">→</span></button>
+            </div>
+            <div class="home-footnote"><span class="mint-check">✓</span> No perfect plan needed. Just a first step.</div>
+          </div>
+          <div class="hero-art" aria-label="A preview of a task broken into small steps">
+            <div class="art-glow"></div>
+            <div class="art-orbit orbit-one"></div>
+            <div class="art-orbit orbit-two"></div>
+            <div class="world-scene" id="worldScene" data-atmosphere="medium" data-progress="0">
+              <div class="world-halo halo-back"></div>
+              <div class="world-halo halo-front"></div>
+              <div class="world-particles" aria-hidden="true">
+                <span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span>
+              </div>
+              <div class="world-clouds" aria-hidden="true">
+                <span class="world-cloud cloud-left"><i></i><i></i><i></i></span>
+                <span class="world-cloud cloud-right"><i></i><i></i><i></i></span>
+                <span class="world-cloud cloud-far"><i></i><i></i><i></i></span>
+              </div>
+              <div class="island-shadow" aria-hidden="true"></div>
+              <div class="world-island" aria-hidden="true">
+                <div class="island-top"></div>
+                <div class="island-layer layer-middle"></div>
+                <div class="island-layer layer-deep"></div>
+                <div class="island-crag crag-left"></div>
+                <div class="island-crag crag-right"></div>
+                <div class="island-grass"></div>
+                <div class="island-path"><span></span><span></span><span></span></div>
+                <div class="island-plant plant-left"><i></i><i></i><i></i></div>
+                <div class="island-plant plant-center"><i></i><i></i><i></i></div>
+                <div class="island-plant plant-right"><i></i><i></i><i></i></div>
+                <div class="island-platform platform-left"></div>
+                <div class="island-platform platform-right"></div>
+              </div>
+              <div class="orb-stage" id="heroOrb" aria-hidden="true">
+                <div class="orb-ring orb-ring-back"></div>
+                <div class="orb-ring orb-ring-front"></div>
+                <div class="orb-core"><span class="orb-shine"></span></div>
+                <span class="orb-ripple"></span>
+              </div>
+            </div>
+            <div class="preview-card">
+              <div class="preview-top"><span class="preview-icon">✳</span><span>YOUR NEXT STEP</span><span class="preview-dots">···</span></div>
+              <h2 id="artTask">Open the assignment</h2>
+              <p>That's enough for this moment.</p>
+              <div class="preview-divider"></div>
+              <div class="preview-next"><span class="preview-number">01</span><span>Read one instruction</span><span class="preview-arrow">↗</span></div>
+              <div class="preview-next muted-next"><span class="preview-number">02</span><span>Write one rough note</span><span class="preview-arrow">↗</span></div>
+              <div class="preview-progress"><span id="artProgress"></span></div>
+              <div class="preview-caption"><span>Small steps add up</span><strong id="artProgressLabel">00 / 03</strong></div>
+            </div>
+            <button class="world-crystal crystal-left" type="button" data-world-action="first-step" aria-label="Show the first small step"></button>
+            <button class="world-crystal crystal-right" type="button" data-world-action="progress" aria-label="Show plan progress"></button>
+            <div class="world-object-note" id="worldObjectNote" aria-live="polite" hidden></div>
+            <span class="floating-note note-top">Start where you are <span>✦</span></span>
+            <span class="floating-note note-bottom"><span class="note-dot"></span> A little progress counts</span>
+          </div>
+        </div>
+        <div class="home-strip">
+          <span class="strip-label">A reminder for today</span>
+          <strong>Progress isn't a finish line. It's the moment you begin.</strong>
+          <span class="strip-sparkle" aria-hidden="true">✳</span>
+        </div>
+      </section>
+
+      <section class="view" id="workspaceView" data-view="workspace" aria-labelledby="workspaceTitle" hidden>
+        <div class="view-heading">
+          <div><div class="eyebrow">Your space to begin</div><h1 id="workspaceTitle">Let's make it <em>smaller.</em></h1><p>Tell us what's on your mind. We'll find one gentle place to start.</p></div>
+        </div>
+        <div class="journey-progress" aria-label="Your progress through the plan">
+          <span class="journey-stage is-current" data-stage-indicator="task"><b>1</b> Choose a task</span>
+          <span class="journey-connector" aria-hidden="true"></span>
+          <span class="journey-stage" data-stage-indicator="setup"><b>2</b> Set your pace</span>
+          <span class="journey-connector" aria-hidden="true"></span>
+          <span class="journey-stage" data-stage-indicator="plan"><b>3</b> Take a small step</span>
+          <span class="journey-status" id="journeyStatus" aria-live="polite">Choose a task to begin.</span>
+        </div>
+
+        <div class="workflow-stage" id="taskStage" data-stage-panel="task">
+        <section class="task-manager panel" aria-label="My tasks">
+          <div class="task-manager-heading"><div><span class="kicker">SAVED TASKS</span><p>Choose a saved task or enter a new one below.</p></div><span class="chip task-total-chip"><strong id="taskTotal">0</strong> tasks</span></div>
+          <form class="task-add-form" id="taskAddForm">
+            <label class="sr-only" for="newTaskText">Add a task</label>
+            <input id="newTaskText" type="text" maxlength="180" placeholder="Add something you want to start…" autocomplete="off">
+            <button class="btn primary" type="submit">Add task <span aria-hidden="true">+</span></button>
+          </form>
+          <p class="task-list-feedback" id="taskListFeedback" role="status" aria-live="polite"></p>
+          <div class="task-list" id="taskList"></div>
+          <div class="task-empty" id="taskEmpty">
+            <span class="empty-icon" aria-hidden="true">✳</span>
+            <h2>A clear patch of space.</h2>
+            <p>Add a task above, then select it to get started.</p>
+          </div>
+        </section>
+
+        <div class="workspace task-workspace">
+          <section class="panel tilt-card" data-tilt aria-labelledby="taskHeading">
+            <div class="panel-head"><h2 id="taskHeading">Choose your task</h2><span class="index">STEP 1 OF 3</span></div>
+            <div class="field">
+              <div class="field-top"><label for="taskType">What kind of task is it?</label></div>
+              <select id="taskType">
+                <option value="study">Study or assignment</option>
+                <option value="coding">Coding or project</option>
+                <option value="writing">Writing or research</option>
+                <option value="research">Research</option>
+                <option value="admin">Life admin or chores</option>
+                <option value="other">Something else</option>
+              </select>
+            </div>
+            <div class="field">
+              <div class="field-top"><label for="taskText">Name the task</label><span class="field-optional">A rough draft is fine</span></div>
+              <textarea id="taskText" maxlength="180" placeholder="What do you need to start?" aria-describedby="taskTextHelp taskError">Prepare my data structures assignment</textarea>
+              <p class="helper" id="taskTextHelp">Write it as it appears in your head. It doesn't need to be perfect.</p>
+              <p class="field-error" id="taskError" role="alert" hidden>Enter a task before creating a plan.</p>
+            </div>
+            <button class="btn primary full-button" id="continueToSetup" type="button">Choose my pace <span aria-hidden="true">→</span></button>
+          </section>
+        </div>
+        </div>
+
+        <section class="workflow-stage" id="setupStage" data-stage-panel="setup" hidden>
+          <section class="panel settings-stage" aria-labelledby="setupHeading">
+            <div class="panel-head"><div><span class="kicker">STEP 2 OF 3 · <span id="setupTaskName">Your task</span></span><h2 id="setupHeading">Set your pace</h2></div><span class="index">TIME · ENERGY · SUPPORT</span></div>
+            <div class="field">
+              <div class="field-top"><label for="minutes">How much time do you have?</label><span class="chip" id="minutesValue">5 minutes</span></div>
+              <input id="minutes" type="range" min="2" max="25" value="5">
+              <div class="ends"><span>2 min</span><span>25 min</span></div>
+            </div>
+            <fieldset class="field energy-field">
+              <legend class="field-label">How's your energy?</legend>
+              <div class="energy-options">
+                <button type="button" data-energy="low" aria-pressed="false"><span aria-hidden="true">◔</span> Low battery</button>
+                <button type="button" data-energy="medium" aria-pressed="true"><span aria-hidden="true">◑</span> In between</button>
+                <button type="button" data-energy="high" aria-pressed="false"><span aria-hidden="true">◕</span> Ready-ish</button>
+              </div>
+              <p class="helper" id="energyHelp">We'll keep the first step clear and manageable.</p>
+            </fieldset>
+            <fieldset class="field barrier-field">
+              <legend class="field-label">What's making this feel hard?</legend>
+              <p class="helper barrier-intro">Pick the closest fit. We'll adapt the plan to meet you there.</p>
+              <div class="barrier-options" id="barrierOptions" role="radiogroup" aria-label="What's making this feel hard?">
+                <button type="button" role="radio" data-barrier="start" aria-checked="true" tabindex="0">I don't know where to start</button>
+                <button type="button" role="radio" data-barrier="big" aria-checked="false" tabindex="-1">The task feels too big</button>
+                <button type="button" role="radio" data-barrier="energy" aria-checked="false" tabindex="-1">I have low energy</button>
+                <button type="button" role="radio" data-barrier="fear" aria-checked="false" tabindex="-1">I'm afraid of doing it badly</button>
+                <button type="button" role="radio" data-barrier="distracted" aria-checked="false" tabindex="-1">I'm distracted</button>
+                <button type="button" role="radio" data-barrier="postponing" aria-checked="false" tabindex="-1">I keep postponing it</button>
+              </div>
+            </fieldset>
+            <div class="workflow-actions">
+              <button class="btn secondary" id="backToTask" type="button">← Edit task</button>
+              <button class="btn primary" id="generatePlan" type="button">Make my plan <span aria-hidden="true">→</span></button>
+            </div>
+          </section>
+        </section>
+
+        <section class="workflow-stage" id="planStage" data-stage-panel="plan" hidden>
+          <section class="result" id="planResult" aria-label="Your suggested plan" hidden>
+            <div class="plan-task-heading"><span class="kicker">YOUR PLAN FOR</span><strong id="planTaskName"></strong><button class="text-button" id="editPlan" type="button">Edit plan</button></div>
+            <div class="start-card tilt-card" data-tilt>
+              <div class="card-topline"><span class="kicker" id="selectedStepLabel">YOUR NEXT STEP</span><span class="start-sparkle" aria-hidden="true">✳</span></div>
+              <h2 id="firstStep" aria-live="polite">Open your assignment and read the question once.</h2>
+              <p id="stepWhy" aria-live="polite">Your only goal is to make contact with the task.</p>
+              <p class="time-guidance" id="planTimeGuidance" role="status"></p>
+              <div class="step-actions">
+                <button class="btn start-focus-button" id="startSession" type="button"><span aria-hidden="true">▶</span> Start this step</button>
+                <button class="btn secondary" id="stepStarted" type="button">I did this</button>
+              </div>
+              <div class="plan-complete-message" id="planCompleteMessage" role="status" hidden>
+                <strong>That's the whole plan. You did it.</strong>
+                <p>Your steps are complete. Save this as a Small Win, stop here, or start fresh.</p>
+                <div class="completion-actions">
+                  <button class="btn primary" id="recordPlanWin" type="button">Record a Small Win</button>
+                  <button class="btn secondary" id="stopForNow" type="button">Stop for now</button>
+                  <button class="text-button" id="makeAnotherPlan" type="button">Make another plan</button>
+                </div>
+              </div>
+            </div>
+            <details class="rescue-disclosure" id="rescueDisclosure">
+              <summary>Need an even smaller action?</summary>
+            <section class="rescue-panel" aria-labelledby="rescueHeading">
+              <div class="rescue-copy">
+                <div class="orb-stage rescue-orb" id="rescueOrb" aria-hidden="true">
+                  <div class="orb-ring orb-ring-back"></div>
+                  <div class="orb-ring orb-ring-front"></div>
+                  <div class="orb-core"><span class="orb-shine"></span></div>
+                  <span class="orb-ripple"></span>
+                </div>
+                <div><div class="kicker">A TINY RESET</div><h2 id="rescueHeading">Need an even smaller start?</h2><p id="rescueActionPreview">We'll find one action you can do in 20 seconds.</p></div>
+              </div>
+              <button class="btn rescue-start" id="rescueStart" type="button">Try a 20-second start <span aria-hidden="true">→</span></button>
+              <div class="rescue-session" id="rescueSession" hidden>
+                <div class="rescue-session-top"><span class="kicker">JUST THIS ONE ACTION</span><span class="chip" id="rescueStatus" aria-live="polite">Ready</span></div>
+                <p class="rescue-action" id="rescueAction">Open the relevant file.</p>
+                <div class="rescue-countdown" id="rescueCountdown" role="timer" aria-label="20 seconds remaining" aria-live="off">00:20</div>
+                <div class="rescue-controls">
+                  <button class="btn secondary" id="rescuePause" type="button">Pause</button>
+                  <button class="btn secondary" id="rescueRestart" type="button">Restart 20s</button>
+                  <button class="btn primary" id="rescueDone" type="button">I did it ✓</button>
+                </div>
+              </div>
+              <p class="rescue-success" id="rescueSuccess" role="status" hidden><span aria-hidden="true">✦</span> You did the tiny thing. That counts.</p>
+            </section>
+            </details>
+            <div class="result-grid">
+              <div class="metric tilt-card" data-tilt><div class="kicker">TIME YOU HAVE</div><div class="big" id="startSize">5 min</div><p id="startSizeText">A tiny entry point, not a deadline.</p></div>
+              <div class="metric tilt-card" data-tilt><div class="kicker">SUCCESS MEANS</div><div class="big" id="successWord">Begin</div><p id="successText">You showed up. That's the win.</p></div>
+            </div>
+            <details class="steps-panel tilt-card" data-tilt open>
+              <summary class="steps-head"><div><div class="kicker">STEP 3 OF 3</div><strong>Your small steps</strong></div><span class="chip" id="stepCount">0 of 3 complete</span><span class="plan-disclosure" aria-hidden="true">+</span></summary>
+              <div class="steps-content">
+                <div class="progress-track" role="progressbar" aria-label="Plan steps completed" aria-valuemin="0" aria-valuemax="3" aria-valuenow="0"><span id="progressBar"></span></div>
+                <div class="step-list" id="stepList"></div>
+                <p class="helper progress-note" id="progressNote" aria-live="polite">Optional checklist progress.</p>
+                <div class="plan-actions"><button class="text-button" id="copyPlan" type="button"><span aria-hidden="true">▣</span> Copy my plan</button></div>
+              </div>
+            </details>
+          </section>
+        </section>
+      </section>
+
+      <section class="view focus-view" id="focusView" data-view="focus" aria-labelledby="focusTitle" hidden>
+        <div class="focus-shell">
+          <button class="back-button" id="backToWorkspace" type="button"><span aria-hidden="true">←</span> Close session and keep it paused</button>
+          <div class="focus-content">
+            <div class="focus-badge"><span class="dot"></span><span id="timerStatus" aria-live="polite">Ready when you are</span></div>
+            <p class="focus-interrupted" id="focusInterruptedNotice" role="status" hidden>An unfinished focus session was paused. It has not been counted as a win; resume it whenever you're ready.</p>
+            <div class="eyebrow">This moment is enough</div>
+            <p class="focus-overline">YOUR ONLY JOB RIGHT NOW</p>
+            <h1 id="focusTitle">Start with one small step.</h1>
+            <p class="focus-step-instructions" id="focusStepInstructions"></p>
+            <p class="focus-task"><span>FOR THIS TASK</span><strong id="focusTask">Your task will be ready when you are.</strong></p>
+            <div class="timer" id="timer" role="timer" aria-label="Time remaining" aria-live="off">05:00</div>
+            <p class="focus-prompt" id="focusPrompt">You don't have to do it all. Just be here for this bit.</p>
+            <div class="focus-actions">
+              <button class="btn primary" id="pauseBtn" type="button">Start focus session</button>
+              <button class="btn secondary" id="restartFocus" type="button">Restart timer</button>
+              <button class="btn secondary" id="finishBtn" type="button">Finish session</button>
+            </div>
+            <p class="focus-reassurance">Starting a focus session counts as a Small Win. Closing keeps your timer paused.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="view wins-view" id="winsView" data-view="wins" aria-labelledby="winsTitle" hidden>
+        <div class="view-heading wins-heading">
+          <div><div class="eyebrow">Look how far you've come</div><h1 id="winsTitle">Your small <em>wins.</em></h1><p>Every time you show up, it counts.</p></div>
+          <div class="wins-total"><span id="winCount">0</span><span>small wins</span><span class="total-sparkle" aria-hidden="true">✳</span></div>
+        </div>
+        <div class="wins-panel tilt-card" data-tilt>
+          <div class="rescue-progress" aria-label="Your adaptive rescue progress">
+            <div class="progress-stat"><span class="kicker">RESCUE ATTEMPTS</span><strong id="rescueAttemptCount">0</strong><span>times you chose a tiny start</span></div>
+            <div class="progress-stat"><span class="kicker">ACTIONS COMPLETED</span><strong id="rescueCompletedCount">0</strong><span>rescue actions you did</span></div>
+            <div class="progress-stat"><span class="kicker">TOTAL SMALL WINS</span><strong id="totalSmallWins">0</strong><span>focus starts and completed rescue actions</span></div>
+          </div>
+          <div class="strategy-summary">
+            <div><span class="kicker">WHAT'S HELPED</span><h2>Starting strategies</h2></div>
+            <p id="strategyEmpty">Complete a rescue action to see which starting approaches have helped you.</p>
+            <div class="strategy-list" id="strategyList"></div>
+          </div>
+          <div class="wins-panel-head"><div><span class="kicker">YOUR JOURNEY</span><h2>Moments you began</h2></div><span class="wins-stamp" aria-hidden="true">✦</span></div>
+          <div id="winsList" class="wins-list"></div>
+          <div class="empty-wins" id="emptyWins">
+            <div class="empty-icon" aria-hidden="true">✳</div>
+            <h3>Your first win is waiting.</h3>
+            <p>Start a focus session or complete a rescue action and it will be saved here, ready to remind you that you can begin.</p>
+          </div>
+        </div>
+        <div class="storage-note" id="storageNote" role="status" hidden>Wins are only saved for this visit because browser storage is unavailable.</div>
+        <section class="wins-progress-section" aria-labelledby="progressTitle">
+          <div class="view-heading compact-heading">
+            <div><div class="eyebrow">Every beginning is progress</div><h2 id="progressTitle">Your path, <em>so far.</em></h2><p>Notice what you've started—without rushing the next step.</p></div>
+          </div>
+          <div class="progress-dashboard">
+            <section class="progress-hero panel">
+              <div class="progress-ring" id="taskProgressRing" role="img" aria-label="0 of 0 tasks complete">
+                <div class="progress-ring-center"><strong id="taskProgressPercent">0%</strong><span>tasks complete</span></div>
+              </div>
+              <div class="progress-hero-copy"><span class="kicker">YOUR TASK LIST</span><h3 id="progressTaskSummary">Your first step is waiting.</h3><p id="progressTaskDetail">Add a task to My Plan and choose a small place to begin.</p></div>
+            </section>
+            <div class="progress-stats-grid">
+              <article class="progress-stat-card panel"><span class="stat-icon mint-icon" aria-hidden="true">✓</span><span class="kicker">SMALL WINS</span><strong id="progressWinCount">0</strong><p>focus starts and rescue actions</p></article>
+              <article class="progress-stat-card panel"><span class="stat-icon lilac-icon" aria-hidden="true">↗</span><span class="kicker">RESCUE ACTIONS</span><strong id="progressRescueCount">0</strong><p>tiny actions you chose to finish</p></article>
+              <article class="progress-stat-card panel"><span class="stat-icon mint-icon" aria-hidden="true">▤</span><span class="kicker">TASKS COMPLETED</span><strong id="progressCompletedTasks">0</strong><p>items checked off your task list</p></article>
+            </div>
+            <section class="progress-latest panel">
+              <div class="steps-head"><div><span class="kicker">YOUR CURRENT PLAN</span><strong>Checklist progress</strong></div><span class="chip" id="progressStepCount">0 of 3 steps</span></div>
+              <div class="progress-track" role="progressbar" aria-label="Current plan progress" aria-valuemin="0" aria-valuemax="3" aria-valuenow="0"><span id="dashboardStepBar"></span></div>
+              <p id="dashboardStepNote">Open My Plan to make a small plan.</p>
+              <button class="btn secondary" type="button" data-nav="workspace">Go to My Plan <span aria-hidden="true">→</span></button>
+            </section>
+          </div>
+        </section>
+      </section>
+      <section class="view settings-view" id="settingsView" data-view="settings" aria-labelledby="settingsTitle" hidden>
+        <button class="back-button settings-back" type="button" data-nav="workspace"><span aria-hidden="true">←</span> Back to Unstuck</button>
+        <div class="view-heading">
+          <div><div class="eyebrow">Make this space yours</div><h1 id="settingsTitle">Your <em>settings.</em></h1><p>A few simple controls for your Unstuck experience.</p></div>
+        </div>
+        <section class="settings-panel panel" aria-label="Unstuck preferences">
+          <div class="setting-row">
+            <div><strong>Default focus duration</strong><p>Used when you reset your workspace or start a fresh one. It won't change a task or focus session already in progress.</p></div>
+            <label class="setting-control" for="defaultMinutes"><span class="sr-only">Default focus duration</span><input id="defaultMinutes" type="range" min="2" max="25" value="5"><output id="defaultMinutesValue" for="defaultMinutes">5 minutes</output></label>
+          </div>
+          <div class="setting-row">
+            <div><strong>Starting energy</strong><p>Choose the energy level to use when beginning a fresh workspace.</p></div>
+            <label class="setting-control" for="defaultEnergy"><span class="sr-only">Starting energy</span><select id="defaultEnergy"><option value="low">Low battery</option><option value="medium">In between</option><option value="high">Ready-ish</option></select></label>
+          </div>
+          <div class="setting-row">
+            <div><strong>Starting preference</strong><p>Choose what tends to make starting feel difficult. You can change this for each plan.</p></div>
+            <label class="setting-control" for="defaultBarrier"><span class="sr-only">Starting preference</span><select id="defaultBarrier"><option value="start">I don't know where to start</option><option value="big">The task feels too big</option><option value="energy">I have low energy</option><option value="fear">I'm afraid of doing it badly</option><option value="distracted">I'm distracted</option><option value="postponing">I keep postponing it</option></select></label>
+          </div>
+          <div class="setting-row">
+            <div><strong>Reduce decorative motion</strong><p>Use less animation throughout the app. Your device's reduced-motion preference is respected automatically.</p></div>
+            <label class="switch"><input id="motionSetting" type="checkbox"><span class="switch-track" aria-hidden="true"></span><span class="sr-only">Reduce decorative motion</span></label>
+          </div>
+          <div class="setting-row">
+            <div><strong>Local progress</strong><p>Your task list, workspace choices, and wins stay in this browser. An unfinished focus session is kept in this tab so you can resume after a reload; it is cleared when completed or reset.</p></div>
+            <span class="local-status"><span class="dot"></span><span id="localStatusText">Checking storage</span></span>
+          </div>
+          <div class="setting-actions">
+            <button class="btn secondary" id="settingsReset" type="button">Reset workspace</button>
+          </div>
+        </section>
+      </section>
+      </main>
+    </div>
+
+    <nav class="mobile-nav" aria-label="Mobile navigation">
+      <button class="mobile-nav-link" type="button" data-nav="home" aria-current="page"><span aria-hidden="true">⌂</span>Home</button>
+      <button class="mobile-nav-link" type="button" data-nav="workspace"><span aria-hidden="true">✳</span>Plan</button>
+      <button class="mobile-nav-link" type="button" data-nav="focus"><span aria-hidden="true">◉</span>Focus</button>
+      <button class="mobile-nav-link" type="button" data-nav="wins"><span aria-hidden="true">✦</span>Wins</button>
+    </nav>
+
+    <footer class="footer"><span><strong>unstuck.</strong> A kinder way to begin.</span><span>No account · Your pace · Built for the web</span></footer>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
